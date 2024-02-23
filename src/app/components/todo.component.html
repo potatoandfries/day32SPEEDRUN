@@ -1,0 +1,31 @@
+<form [formGroup]="todoForm" (submit)="pressed()">
+    <table>
+      <tr>
+        <td>Description:</td>
+        <td><input type="text" size="30" formControlName="text"></td>
+      </tr>
+      <tr>
+        <td>Priority:</td>
+        <td>
+        <input type="radio" size="30" formControlName="priority" name="priority" value="High" id='High'>High
+        <input type="radio" size="30" formControlName="priority" name="priority" value="Medium" id="Medium">Medium
+        <input type="radio" size="30" formControlName="priority" name="priority" value="Low" id="Low">Low
+        </td>
+      </tr>
+      <tr>
+        <td>Due:</td>
+        <td><input type="date" formControlName="due">
+            <div *ngIf="todoForm.get('due')?.hasError('futureDate') && todoForm.get('due')?.touched">
+              <p>Please select a future date</p>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+            <button type="submit">CLICK TO ADD</button>
+
+        </td>
+      </tr>
+    </table>
+</form>
